@@ -1,26 +1,170 @@
-
 <div class="container">
-    <div class="row mb-2 mt-2 text-center">
-      <div class="col-md-4">
-      </div>
-      <div class="col-md-4">
-        <h5>User Management Portal</h5>
-        <small>User</small>
-      </div>
-      <div class="col-md-4">
+  <div class="row mb-2 mt-2 text-center">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <h5>Inventory Management Portal</h5>
+      <small *ngIf="titleAction$ | async as title">{{ title }}</small>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <!-- nav bar -->
+  <!-- nav bar  here -->
+  <nav class="navbar navbar-expand-md breadcrumb">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="nav nav-pills">
+        <a class="nav-item nav-link active ml-1" (click)="changeTitle('Users')" data-toggle="tab" href="#users">
+          <i class="fa fa-users"></i>
+          Users
+        </a>
+        <a class="nav-item nav-link ml-3" (click)="changeTitle('Settings')" data-toggle="tab" href="#reset-password">
+          <i class="fa fa-cogs"></i>
+          Settings
+        </a>
+        <a class="nav-item nav-link move-right mr-3" (click)="changeTitle('Profile')" data-toggle="tab" href="#profile">
+          Welcome , tatenda
+          <i class="fa fa-user"></i>
+        </a>
       </div>
     </div>
- 
-  
-    <button [routerLink]="['/Stock']">Stock</button>
+  </nav>
+
+    <p-toast></p-toast>
+    <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
 
 
 
+  <div class="ui-g-12">
+    <div class="ui-g-6" *ngIf="activeIndex === 0">
+      <div class="stepsdemo-content">
+        <p-card>
+          <ng-template pTemplate="content">
+            <div class="p-fluid formgrid grid">
+              <div class="field">
+                <label for="firstname">Firstname</label>
+                <input type="text" required pInputText>
+              </div>
+
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+              <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-g-6" *ngIf="activeIndex === 1">
+      <div class="stepsdemo-content">
+        <p-card>
+          <ng-template pTemplate="content">
+            <div class="p-fluid formgrid grid">
+              <div class="field">
+                <label for="firstname">Firstname</label>
+                <input type="text" required pInputText>
+              </div>
+
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left"></p-button>
+                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-g-6" *ngIf="activeIndex === 2">
+      <div class="stepsdemo-content">
+        <p-card>
+          <ng-template pTemplate="content">
+            <div class="p-fluid formgrid grid">
+              <div class="field">
+                <label for="firstname">Firstname</label>
+                <input type="text" required pInputText>
+              </div>
+
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left"></p-button>
+                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <div class="ui-g-6" *ngIf="activeIndex === 3">
+      <div class="stepsdemo-content">
+        <p-card>
+          <ng-template pTemplate="content">
+            <div class="p-fluid formgrid grid">
+              <div class="field">
+                <label for="firstname">Firstname</label>
+                <input type="text" required pInputText>
+              </div>
+
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left"></p-button>
+                <p-button label="Complete" (onClick)="complete()" icon="pi pi-angle-right" iconPos="right" styleClass="p-button-success"></p-button>
+            </div>
+        </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="footerbtn">
+    <div class="grid grid-nogutter justify-content-end">
+      <p-button label="Next" (onClick)="next()" [disabled]="activeIndex === items.length - 1" icon="pi pi-angle-right"
+        iconPos="right"></p-button>
+
+    </div>
+    <div class="grid grid-nogutter justify-content-end">
+      <p-button label="Prev" (onClick)="prev()" [disabled]="activeIndex === 0" icon="pi pi-angle-left"
+        iconPos="left"></p-button>
+
+    </div>
+  </div> -->
 
 
-<button>Users</button>
-<button>Approved Request</button>
-<button>Inventory Request</button>
+  <div class="d-flex">
+    <button type="button" routerLink="/Dashboard" routerLinkActive="true"> Stock </button>
+
+    <button type="button" routerLink="/people" routerLinkActive="true"> Users </button>
+
+    <button type="button" routerLink="/purchase" routerLinkActive="true"> Stockrequest </button>
+
+    <button type="button" routerLink="/approvedrequest" routerLinkActive="true">Requests </button>
+
+    <button class="button">Approved Request</button>
 
 
 
+  </div>
+   <!-- change password  -->
+   <!-- <div [hidden]="!isAdmin" class="tab-pane fade" id="reset-password"> -->
+    <form #resetPasswordForm="ngForm" (ngSubmit)="onResetPassword(resetPasswordForm)">
+      <fieldset>
+        <legend>User Password Management</legend>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" name="reset-password-email" required ngModel class="form-control"
+            placeholder="Enter email (example@email.com)">
+          <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <!-- <button type="submit" [disabled]="resetPasswordForm.invalid" class="btn btn-primary">
+          <i *ngIf="refreshing" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
+          <span *ngIf="refreshing">Loading...</span>
+          <span *ngIf="!refreshing">Reset Password</span>
+        </button> -->
+      </fieldset>
+    </form>
+  <!-- </div> -->
+</div>

@@ -1,11 +1,13 @@
 export class Stock {
-     public   productName : string;    
-      public    date: any;
-     public  productCode :string;
-     public      reorderLevel:number;
-      public   Quantity!:number;
-       public  Sensitivity!:string;
 
+     public  productId:number;
+	public  productName:string;
+	public  productCode:any;
+	public productDescription:string;
+	public productCategory:string;
+	public   quantityOnHand:number;
 
 
 }
+
+

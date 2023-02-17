@@ -18,7 +18,7 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         if (this.authenticationService.isUserLoggedIn()) {
-            this.router.navigateByUrl('user');
+            this.router.navigateByUrl('Dashboard');
         }
         else {
             this.router.navigateByUrl("login");

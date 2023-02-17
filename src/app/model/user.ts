@@ -1,3 +1,5 @@
+import { Role } from "./role";
+
 export class User {
     public userId: string;
     public firstName: string;
@@ -10,7 +12,7 @@ export class User {
     public profileImageUrl: string;
     public active: boolean;
     public notLocked: boolean;
-    public role: string;
+    public role: Role;
     public authorities: [];
    constructor() {
       this.userId = '';
@@ -23,8 +25,7 @@ export class User {
       this.joinDate = null;
       this.profileImageUrl = '';
       this.active = false;
-      this.notLocked = false;
-      this.role = '';
+      this.notLocked = false;     
       this.authorities = [];
     }
   

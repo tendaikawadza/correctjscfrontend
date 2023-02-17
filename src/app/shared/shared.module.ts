@@ -10,6 +10,20 @@ import { HideForRolesDirective } from './directives/hide-for-roles.directive';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+
+   exports:[
+
+    HideForRolesDirective
+   ]
+
 })
-export class SharedModule { }
+
+
+
+
+export class SharedModule {
+
+
+
+ }

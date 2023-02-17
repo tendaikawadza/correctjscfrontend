@@ -13,7 +13,6 @@ var User = /** @class */ (function () {
         this.profileImageUrl = '';
         this.active = false;
         this.notLocked = false;
-        this.role = '';
         this.authorities = [];
     }
     return User;

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StockItemComponent } from './stock-item.component';
-
+import { Form } from '@angular/forms';
 describe('StockItemComponent', () => {
   let component: StockItemComponent;
   let fixture: ComponentFixture<StockItemComponent>;

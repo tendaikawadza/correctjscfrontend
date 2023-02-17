@@ -43,14 +43,30 @@ export class StockService {
    }
 
 
-   public dleteStock(stockId: number): Observable<any|HttpErrorResponse>{
+   public deleteStock(stockId: number): Observable<any|HttpErrorResponse>{
     return this.http.delete<Stock>('${this.host}/stock/delete/${userId}');
 
    }
+   public addProducts(formData: FormData): Observable<Stock|HttpErrorResponse>{
+    return this.http.post<Stock>('${this.host}/product/product',formData);
 
-
-
-
-
+   }
+   public addProduct(product:any): Observable<any> {
+    let url=this.host+'/product/product';
+    console.log(product);
+    let data={
+      "productId": 1,
+      "productName": "mtisi",
+      "productDescription": "bond",
+      "productCategory": "vie",
+      "units": 20
+  }
+    return this.http.post<any>(url,data);
+  }
+ 
+  getAllProducts(){
+    let url=this.host+'/product/products';
+  return this.http.get<any>(url);
+  }
    }
 

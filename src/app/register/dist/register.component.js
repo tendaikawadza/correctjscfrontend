@@ -7,9 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var notificaton_type_enum_1 = require("../enum/notificaton-type.enum");
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(router, authenticationService, notificationService) {
+    function RegisterComponent(formBuld, router, authenticationService, notificationService) {
+        this.formBuld = formBuld;
         this.router = router;
         this.authenticationService = authenticationService;
         this.notificationService = notificationService;
@@ -19,11 +21,22 @@ var RegisterComponent = /** @class */ (function () {
         if (this.authenticationService.isUserLoggedIn()) {
             this.router.navigateByUrl('/user');
         }
+        this.regForm = this.formBuld.group({
+            firstName: ['', forms_1.Validators.required],
+            lastName: ['', forms_1.Validators.required],
+            username: ['', forms_1.Validators.required],
+            email: ['', forms_1.Validators.required],
+            department: ['', forms_1.Validators.required]
+        });
     };
-    RegisterComponent.prototype.onRegister = function (user) {
+    RegisterComponent.prototype.onRegister = function () {
         var _this = this;
+        if (this.regForm.invalid) {
+            return;
+        }
+        console.log(this.regForm.value);
         this.showLoading = true;
-        this.subscriptions.push(this.authenticationService.register(user).subscribe({
+        this.subscriptions.push(this.authenticationService.register(this.regForm.value).subscribe({
             next: function (response) {
                 _this.showLoading = false;
                 _this.sendNotification(notificaton_type_enum_1.NotificationType.SUCCESS, "A new account was created for " + response.firstName + ".\n          Please check your email for password to log in.");
